@@ -33,7 +33,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i314.DioConsumer(dio: gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i656.PlanRepository>(
-      () => _i656.PlanRepository(api: gh<_i418.ApiConsumer>()),
+      () => _i656.PlanRepositoryImpl(api: gh<_i418.ApiConsumer>()),
     );
     gh.factory<_i1022.PlanCubit>(
       () => _i1022.PlanCubit(planRepository: gh<_i656.PlanRepository>()),
