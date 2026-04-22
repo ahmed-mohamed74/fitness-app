@@ -3,24 +3,13 @@ import 'package:fitness_app/features/plan/presentation/widgets/plan_card_widget.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PlansScreen extends StatefulWidget {
+class PlansScreen extends StatelessWidget {
   const PlansScreen({super.key});
-
-  @override
-  State<PlansScreen> createState() => _PlansScreenState();
-}
-
-class _PlansScreenState extends State<PlansScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<PlanCubit>().getPlans();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

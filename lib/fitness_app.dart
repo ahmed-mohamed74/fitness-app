@@ -10,7 +10,7 @@ class FitnessApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
-      routerConfig: goRouter,
+      routerConfig: router,
     );
   }
 }
