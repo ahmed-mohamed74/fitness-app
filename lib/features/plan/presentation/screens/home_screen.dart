@@ -1,35 +1,32 @@
-import 'package:dio/dio.dart';
-import 'package:fitness_app/core/api/dio_consumer.dart';
-import 'package:fitness_app/features/plan/data/repositories/plan_repository.dart';
 import 'package:fitness_app/features/plan/presentation/cubit/plan_cubit.dart';
-import 'package:fitness_app/features/plan/presentation/screens/plans_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+    final StatefulNavigationShell navigationShell;
+
+  const HomeScreen({super.key, required this.navigationShell});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PlanCubit>().getPlans();
+  }
+  @override
   Widget build(BuildContext context) {
-    final screens = [
-      Container(),
-      Container(),
-      BlocProvider(
-        create: (context) => PlanCubit(
-          planRepository: PlanRepository(api: DioConsumer(dio: Dio())),
-        ),
-        child: PlansScreen(),
-      ),
-      Container(),
-      Container(),
-    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
+        title: Text(
           "⚡ IRONPULSE",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         actions: [
           IconButton(
@@ -38,10 +35,10 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: screens[2],
+      body: widget.navigationShell,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2,
-        type: BottomNavigationBarType.fixed,
+        currentIndex: widget.navigationShell.currentIndex,
+        onTap: (index) => widget.navigationShell.goBranch(index),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),

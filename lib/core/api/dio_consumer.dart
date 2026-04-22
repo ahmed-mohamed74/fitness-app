@@ -3,7 +3,9 @@ import 'package:fitness_app/core/api/api_consumer.dart';
 import 'package:fitness_app/core/api/api_interceptors.dart';
 import 'package:fitness_app/core/api/end_points.dart';
 import 'package:fitness_app/core/api/errors/server_exceptions.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: ApiConsumer)
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 

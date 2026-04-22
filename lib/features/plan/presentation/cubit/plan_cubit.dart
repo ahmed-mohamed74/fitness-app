@@ -4,9 +4,11 @@ import 'package:bloc/bloc.dart';
 import 'package:fitness_app/features/plan/data/models/plan_model.dart';
 import 'package:fitness_app/features/plan/data/repositories/plan_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 part 'plan_state.dart';
 
+@injectable
 class PlanCubit extends Cubit<PlanState> {
   final PlanRepository planRepository;
   PlanCubit({required this.planRepository}) : super(PlanInitial());

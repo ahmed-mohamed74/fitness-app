@@ -2,11 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:fitness_app/core/api/api_consumer.dart';
 import 'package:fitness_app/core/api/end_points.dart';
 import 'package:fitness_app/features/plan/data/models/plan_model.dart';
+import 'package:injectable/injectable.dart';
 
-class PlanRepository {
+abstract class PlanRepository {
+  Future<Either<String, List<PlanModel>>> getPlans();
+}
+
+@LazySingleton(as: PlanRepository)
+class PlanRepositoryImpl implements PlanRepository {
   final ApiConsumer api;
 
-  PlanRepository({required this.api});
+  PlanRepositoryImpl({required this.api});
+  @override
   Future<Either<String, List<PlanModel>>> getPlans() async {
     try {
       final response = await api.get(EndPoints.getPlans);
