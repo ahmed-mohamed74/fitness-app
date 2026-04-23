@@ -1,5 +1,3 @@
-
-
 import 'package:bloc/bloc.dart';
 import 'package:fitness_app/features/plan/data/models/plan_model.dart';
 import 'package:fitness_app/features/plan/data/repositories/plan_repository.dart';
@@ -15,7 +13,7 @@ class PlanCubit extends Cubit<PlanState> {
 
   Future<void> getPlans() async {
     emit(PlansLoading());
-    final plans=await planRepository.getPlans();
+    final plans = await planRepository.getPlans();
     plans.fold(
       (error) => emit(PlansFailure(errorMessage: error)),
       (plans) => emit(PlansSuccess(plans: plans)),

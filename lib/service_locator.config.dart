@@ -14,8 +14,12 @@ import 'package:fitness_app/core/api/api_consumer.dart' as _i418;
 import 'package:fitness_app/core/api/dio_consumer.dart' as _i314;
 import 'package:fitness_app/features/plan/data/repositories/plan_repository.dart'
     as _i656;
+import 'package:fitness_app/features/trainers/data/repositories/trainers_repository.dart'
+    as _i666;
 import 'package:fitness_app/features/plan/presentation/cubit/plan_cubit.dart'
     as _i1022;
+import 'package:fitness_app/features/trainers/presentation/cubit/trainers/trainers_cubit.dart'
+    as _i1222;
 import 'package:fitness_app/service_locator.dart' as _i622;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -35,8 +39,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i656.PlanRepository>(
       () => _i656.PlanRepositoryImpl(api: gh<_i418.ApiConsumer>()),
     );
+    gh.lazySingleton<_i666.TrainersRepository>(
+      () => _i666.TrainersRepositoryImpl(api: gh<_i418.ApiConsumer>()),
+    );
     gh.factory<_i1022.PlanCubit>(
       () => _i1022.PlanCubit(planRepository: gh<_i656.PlanRepository>()),
+    );
+    gh.factory<_i1222.TrainersCubit>(
+      () => _i1222.TrainersCubit(
+        trainersRepository: gh<_i666.TrainersRepository>(),
+      ),
     );
     return this;
   }
