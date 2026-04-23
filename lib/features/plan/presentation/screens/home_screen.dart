@@ -1,10 +1,11 @@
 import 'package:fitness_app/features/plan/presentation/cubit/plan_cubit.dart';
+import 'package:fitness_app/features/trainers/presentation/cubit/trainers/trainers_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
-    final StatefulNavigationShell navigationShell;
+  final StatefulNavigationShell navigationShell;
 
   const HomeScreen({super.key, required this.navigationShell});
 
@@ -17,7 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     context.read<PlanCubit>().getPlans();
+    context.read<TrainersCubit>().getTrainers();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
