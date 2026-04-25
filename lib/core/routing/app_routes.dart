@@ -5,4 +5,5 @@ class AppRoutes {
   static const ironSplashScreen = 'ironSplashScreen';
   static const login = 'login';
   static const signup = 'signup';
+  static const trainersScreen = 'trainersScreen';
 }

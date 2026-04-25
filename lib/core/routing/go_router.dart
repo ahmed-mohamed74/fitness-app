@@ -7,6 +7,8 @@ import 'package:fitness_app/features/plan/presentation/screens/home_screen.dart'
 import 'package:fitness_app/features/plan/presentation/screens/plan_details_screen.dart';
 import 'package:fitness_app/features/plan/presentation/screens/plans_screen.dart';
 import 'package:fitness_app/features/splash/view/splash_screen.dart';
+import 'package:fitness_app/features/trainers/presentation/cubit/trainers/trainers_cubit.dart';
+import 'package:fitness_app/features/trainers/presentation/screens/trainers_screen.dart';
 import 'package:fitness_app/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +19,11 @@ final GoRouter router = GoRouter(
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return BlocProvider(
-          create: (context) => sl<PlanCubit>(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => sl<PlanCubit>()),
+            BlocProvider(create: (context) => sl<TrainersCubit>()),
+          ],
           child: HomeScreen(navigationShell: navigationShell),
         );
       },
@@ -35,9 +40,9 @@ final GoRouter router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              name: 'trainers',
+              name: AppRoutes.trainersScreen,
               path: '/home/trainers',
-              builder: (context, state) => Container(),
+              builder: (context, state) => TrainersScreen(),
             ),
           ],
         ),
