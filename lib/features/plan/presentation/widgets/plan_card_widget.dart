@@ -13,7 +13,7 @@ class PlanCard extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () => context.pushNamed(AppRoutes.planDetailsScreen),
+      onTap: () => context.pushNamed(AppRoutes.planDetailsScreen, extra: plan),
       child: Card(
         child: Column(
           children: [

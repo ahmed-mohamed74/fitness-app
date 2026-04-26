@@ -1,9 +1,11 @@
+import 'package:fitness_app/features/plan/data/models/plan_model.dart';
 import 'package:fitness_app/features/plan/presentation/widgets/circle_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class PlanDetailsScreen extends StatelessWidget {
-  const PlanDetailsScreen({super.key});
+  final PlanModel? planModel;
+  const PlanDetailsScreen({super.key, required this.planModel});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,8 @@ class PlanDetailsScreen extends StatelessWidget {
             ],
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-                'https://images.unsplash.com/photo-1534438327276-14e5300c3a48',
+                planModel?.image ??
+                    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48',
                 fit: BoxFit.cover,
               ),
             ),
@@ -40,13 +43,13 @@ class PlanDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       _buildBadge(
-                        'ADVANCED',
+                        planModel?.level ?? 'ADVANCED',
                         colorScheme.primary,
                         Colors.white,
                       ),
                       const SizedBox(width: 8),
                       _buildBadge(
-                        '8 WEEKS',
+                        '${planModel?.durationWeeks ?? '8'} WEEKS',
                         colorScheme.surface,
                         colorScheme.secondary,
                       ),
@@ -56,12 +59,13 @@ class PlanDetailsScreen extends StatelessWidget {
 
                   // 3. Title and Description
                   Text(
-                    'IronPulse Strength Phase',
+                    planModel?.name??'IronPulse Strength Phase',
                     style: theme.textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'A high-intensity program designed for maximum muscle hypertrophy and strength gains. Focuses on compound movements and progressive overload.',
+                    planModel?.description ??
+                        'A high-intensity program designed for maximum muscle hypertrophy and strength gains. Focuses on compound movements and progressive overload.',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.secondary,
                     ),
@@ -69,13 +73,13 @@ class PlanDetailsScreen extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // 4. Info Cards (Duration, Frequency, Intensity)
-                  const Row(
+                   Row(
                     children: [
                       Expanded(
                         child: InfoCard(
                           icon: Icons.timer_outlined,
                           label: 'Duration',
-                          value: '60-90m',
+                          value: '${planModel?.steps?.first.duration??0} Min',
                         ),
                       ),
                       SizedBox(width: 12),
