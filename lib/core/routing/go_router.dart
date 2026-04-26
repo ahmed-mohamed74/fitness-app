@@ -2,6 +2,7 @@ import 'package:fitness_app/core/routing/app_routes.dart';
 import 'package:fitness_app/features/auth/presentation/view/screens/login_screen.dart';
 import 'package:fitness_app/features/auth/presentation/view/screens/signup_screen.dart';
 import 'package:fitness_app/features/onboarding/onboarding_screen.dart';
+import 'package:fitness_app/features/plan/data/models/plan_model.dart';
 import 'package:fitness_app/features/plan/presentation/cubit/plan_cubit.dart';
 import 'package:fitness_app/features/plan/presentation/screens/home_screen.dart';
 import 'package:fitness_app/features/plan/presentation/screens/plan_details_screen.dart';
@@ -78,7 +79,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: AppRoutes.planDetailsScreen,
       path: '/home/plans/planScreen',
-      builder: (context, state) => PlanDetailsScreen(),
+      builder: (context, state) {
+        final planModel = state.extra as PlanModel?;
+        return PlanDetailsScreen(planModel: planModel);
+      },
     ),
     // onboarding router//
     GoRoute(
