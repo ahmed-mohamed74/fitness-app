@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fitness_app/core/api/errors/error_model.dart';
+import 'package:fitness_app/core/errors/error_model.dart';
 
 class ServerException implements Exception{
   final ErrorModel errModel;
