@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/core/services/auth_services.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'login_state.dart';
 

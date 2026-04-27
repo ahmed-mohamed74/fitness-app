@@ -7,7 +7,7 @@ import 'service_locator.config.dart';
 final sl = GetIt.instance;
 
 @InjectableInit()
-void configureDependencies()  =>  sl.init();
+void configureDependencies() => sl.init();
 
 @module
 abstract class RegisterModule {

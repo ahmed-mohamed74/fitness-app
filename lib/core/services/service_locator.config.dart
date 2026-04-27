@@ -20,7 +20,7 @@ import 'package:fitness_app/features/plan/presentation/cubit/plan_cubit.dart'
     as _i1022;
 import 'package:fitness_app/features/trainers/presentation/cubit/trainers/trainers_cubit.dart'
     as _i1222;
-import 'package:fitness_app/service_locator.dart' as _i622;
+import 'package:fitness_app/core/services/service_locator.dart' as _i622;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 

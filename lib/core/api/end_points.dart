@@ -5,6 +5,5 @@ class EndPoints {
 }
 
 class ApiKey {
-  // static String status = "status";
   static String errorMessage = "message";
 }
